@@ -1,23 +1,37 @@
-import {useForm} from 'react-hook-form'
+import {Stack, TextField} from '@mui/material'
+import { useFormContext } from 'react-hook-form'
+import type { Schema } from '../types/schema'
+import { RHFAutocompite } from '../../components/RHFAutocompite'
+import {/*  useLanguages, */ useStates } from '../services/queries'
+// import { RHFGroupButtons } from '../../components/RHFGroupButtons'
 
 export function Users() {
-    const {
-        register,
-        formState: {errors},
-        handleSubmit
-    } = useForm<{email: string}>(
-        {
-            mode: 'all'
-        }
-    )
+    const statesQuery = useStates();
+    // const langQuery = useLanguages();
+    const {register, formState: {errors}} = useFormContext<Schema>()
+    // console.log(statesQuery)
     return (
-        <form onSubmit={handleSubmit(()=> console.log('valid, submit'), () => console.log('invalid'))}>
-            <input {...register('email', {
-                required: { value: true, message: "Email req"},
-                maxLength: { value: 10, message: 'Too many characters'}
-                })}
-            placeholder='Email'/>
-            <p>{errors.email?.message}</p>
-        </form>
+        <Stack sx={{gap: 2}}>
+            <TextField {...register('name')}
+                label={'Name'}
+                error={!!errors.name} 
+                helperText={errors.name?.message}
+            />
+            <TextField {...register('email')}
+                label={'Email'}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+            />
+            <RHFAutocompite<Schema>
+                name="states"
+                label={"states"}
+                options={statesQuery.data}
+            />
+            {/* <RHFGroupButtons<Schema> 
+                name=""
+                label={""}
+                buttonsData={langQuery.data}
+            /> */}
+        </Stack>
     )
 }
