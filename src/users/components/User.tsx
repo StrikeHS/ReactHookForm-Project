@@ -2,14 +2,14 @@ import {Stack, TextField} from '@mui/material'
 import { useFormContext } from 'react-hook-form'
 import type { Schema } from '../types/schema'
 import { RHFAutocompite } from '../../components/RHFAutocompite'
-import {/*  useLanguages, */ useStates } from '../services/queries'
-// import { RHFGroupButtons } from '../../components/RHFGroupButtons'
+import {useLanguages,  useStates } from '../services/queries'
+import { RHFToggleButtonGroup } from '../../components/RHFToggleButtonGroup'
 
 export function Users() {
     const statesQuery = useStates();
-    // const langQuery = useLanguages();
+    const langQuery = useLanguages();
     const {register, formState: {errors}} = useFormContext<Schema>()
-    // console.log(statesQuery)
+
     return (
         <Stack sx={{gap: 2}}>
             <TextField {...register('name')}
@@ -27,11 +27,11 @@ export function Users() {
                 label={"states"}
                 options={statesQuery.data}
             />
-            {/* <RHFGroupButtons<Schema> 
-                name=""
-                label={""}
+            <RHFToggleButtonGroup<Schema> 
+                name="languages"
+                label={"languages"}
                 buttonsData={langQuery.data}
-            /> */}
+            />
         </Stack>
     )
 }
