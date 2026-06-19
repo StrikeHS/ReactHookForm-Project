@@ -10,7 +10,7 @@ type RHFAutocompiteProps<T extends FieldValues> = {
     label: string;
 }
 
-export function RHFAutocompite<T extends FieldValues>({name, options, label}:RHFAutocompiteProps<T>) {
+export function RHFAutocomplete<T extends FieldValues>({name, options, label}:RHFAutocompiteProps<T>) {
     const {control} = useFormContext()
     return  (
     <Controller 

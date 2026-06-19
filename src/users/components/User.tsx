@@ -1,8 +1,8 @@
 import {Stack, TextField} from '@mui/material'
 import { useFormContext } from 'react-hook-form'
 import type { Schema } from '../types/schema'
-import { RHFAutocompite } from '../../components/RHFAutocompite'
-import {useLanguages,  useStates } from '../services/queries'
+import { RHFAutocomplete } from '../../components/RHFAutocomplete'
+import {useGenders, useLanguages,  useStates } from '../services/queries'
 import { RHFToggleButtonGroup } from '../../components/RHFToggleButtonGroup'
 
 export function Users() {
@@ -22,7 +22,7 @@ export function Users() {
                 error={!!errors.email}
                 helperText={errors.email?.message}
             />
-            <RHFAutocompite<Schema>
+            <RHFAutocomplete<Schema>
                 name="states"
                 label={"states"}
                 options={statesQuery.data}
