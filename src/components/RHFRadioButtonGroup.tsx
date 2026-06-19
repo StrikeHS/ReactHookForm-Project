@@ -8,9 +8,9 @@ export function RHFRadioButtonGroup<T extends FieldValues>({name, label, buttons
         <Controller
             control={control}
             name={name}
-            render={({field: {value, onChange, ...fields}}) => 
-                <FormControl>
-                    <FormLabel id="genders-group">Genders</FormLabel>
+            render={({field: {value, onChange, ...fields}, fieldState: {error}}) => 
+                <FormControl error={!!error}>
+                    <FormLabel id="genders-group">{label}</FormLabel>
                     <RadioGroup {...fields}
                         name={name}
                         aria-label={label}
