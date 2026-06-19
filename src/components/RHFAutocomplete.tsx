@@ -1,16 +1,9 @@
 import { Autocomplete, Box, Checkbox, TextField } from "@mui/material";
-import { Controller, useFormContext, type FieldValues, type Path } from "react-hook-form";
-import type { Option } from "../types/options";
+import { Controller, useFormContext, type FieldValues} from "react-hook-form";
 import {CheckBoxOutlineBlank, CheckBox} from '@mui/icons-material'
+import type { RHFComponentCommonProps } from "../types/RHFComponentProps";
 
-
-type RHFAutocompiteProps<T extends FieldValues> = {
-    name: Path<T>;
-    options?: Option[];
-    label: string;
-}
-
-export function RHFAutocomplete<T extends FieldValues>({name, options, label}:RHFAutocompiteProps<T>) {
+export function RHFAutocomplete<T extends FieldValues>({name, buttonsData, label}: RHFComponentCommonProps<T>) {
     const {control} = useFormContext()
     return  (
     <Controller 
@@ -18,9 +11,9 @@ export function RHFAutocomplete<T extends FieldValues>({name, options, label}:RH
         name={name}
         render={({field: {value, onChange, ref}, fieldState: {error}}) => (
             <Autocomplete
-                options={options || []}
-                value={value.map((id: string) => options?.find((item) => item.id === id))}
-                getOptionLabel={(option) => options?.find(item => option.id === item.id)?.label ?? ''}
+                options={buttonsData || []}
+                value={value.map((id: string) => buttonsData?.find((item) => item.id === id))}
+                getOptionLabel={(option) => buttonsData?.find(item => option.id === item.id)?.label ?? ''}
                 onChange={(_, newValue) => {
                     onChange(newValue.map(item => item.id))
                 }}

@@ -1,14 +1,8 @@
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { Controller, useFormContext, type FieldValues, type Path } from "react-hook-form";
-import type { Language } from "../types/languages";
+import { Controller, useFormContext, type FieldValues } from "react-hook-form";
+import type { RHFComponentCommonProps } from "../types/RHFComponentProps";
 
-type RHFToggleButtonGroupProps<T extends FieldValues> = {
-    name: Path<T>;
-    label: string;
-    buttonsData?: Language[]
-}
-
-export function RHFToggleButtonGroup<T extends FieldValues>({name, label, buttonsData}: RHFToggleButtonGroupProps<T>) {
+export function RHFToggleButtonGroup<T extends FieldValues>({name, label, buttonsData}: RHFComponentCommonProps<T>) {
     const {control} = useFormContext();
 
     return(

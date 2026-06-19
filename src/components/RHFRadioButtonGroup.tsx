@@ -1,14 +1,8 @@
-import { Controller, useFormContext, type FieldValues, type Path } from "react-hook-form";
-import type { Gender } from "../types/gender";
+import { Controller, useFormContext, type FieldValues } from "react-hook-form";
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material";
+import type { RHFComponentCommonProps } from "../types/RHFComponentProps";
 
-type RHFRadioButtonGroupProps<T extends FieldValues> = {
-    name: Path<T>;
-    label: string;
-    buttonsData?: Gender[]
-}
-
-export function RHFRadioButtonGroup<T extends FieldValues>({name, label, buttonsData}: RHFRadioButtonGroupProps<T>) {
+export function RHFRadioButtonGroup<T extends FieldValues>({name, label, buttonsData}: RHFComponentCommonProps<T>) {
     const {control} = useFormContext();
     return (
         <Controller
