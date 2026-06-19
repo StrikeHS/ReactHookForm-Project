@@ -4,10 +4,12 @@ import type { Schema } from '../types/schema'
 import { RHFAutocomplete } from '../../components/RHFAutocomplete'
 import {useGenders, useLanguages,  useStates } from '../services/queries'
 import { RHFToggleButtonGroup } from '../../components/RHFToggleButtonGroup'
+import { RHFRadioButtonGroup } from '../../components/RHFRadioButtonGroup'
 
 export function Users() {
     const statesQuery = useStates();
     const langQuery = useLanguages();
+    const gendersQuery = useGenders();
     const {register, formState: {errors}} = useFormContext<Schema>()
 
     return (
@@ -31,6 +33,11 @@ export function Users() {
                 name="languages"
                 label={"languages"}
                 buttonsData={langQuery.data}
+            />
+            <RHFRadioButtonGroup<Schema>
+                name="genders"
+                label={"genders"}
+                buttonsData={gendersQuery.data}
             />
         </Stack>
     )
