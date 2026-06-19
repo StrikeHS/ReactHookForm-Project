@@ -8,7 +8,8 @@ export const schema = z.object({
     // .refine((email) => patterns.email.test(email), {error: 'Email is not valid'})
     states: z.array(z.string()).min(1, {error: "Need one or two states"}).max(2, {error: "Too many states"}),
     languages: z.array(z.string()).min(1,{error: "Need one or two languages"}).max(2, {error: "Too many languages"}),
-    genders: z.literal(['Male', 'Female'])
+    genders: z.literal(['Male', 'Female']),
+    skills: z.array(z.string()).max(2, {error: "Too many skiils. Chill dude..."})
 });
 
 export type Schema = z.infer<typeof schema>
@@ -18,5 +19,6 @@ export const defaultValues: Schema = {
     name: '',
     states: [],
     languages: [],
-    genders: 'Male'
+    genders: 'Male',
+    skills: []
 }

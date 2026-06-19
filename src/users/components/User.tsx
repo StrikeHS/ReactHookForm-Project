@@ -5,6 +5,7 @@ import { RHFAutocomplete } from '../../components/RHFAutocomplete'
 import { RHFToggleButtonGroup } from '../../components/RHFToggleButtonGroup'
 import { RHFRadioButtonGroup } from '../../components/RHFRadioButtonGroup'
 import { useGetData } from '../hooks/useGetData'
+import { RHFCheckboxes } from '../../components/RHFCheckboxes'
 
 export function Users() {
     const buttonsData = useGetData()
@@ -36,6 +37,11 @@ export function Users() {
                 name="genders"
                 label={"genders"}
                 buttonsData={buttonsData.gendersQuery.data}
+            />
+            <RHFCheckboxes<Schema>
+                name="skills"
+                label={"skills"}
+                buttonsData={buttonsData.skillsQuery.data}
             />
         </Stack>
     )
