@@ -9,7 +9,10 @@ export const schema = z.object({
     states: z.array(z.string()).min(1, {error: "Need one or two states"}).max(2, {error: "Too many states"}),
     languages: z.array(z.string()).min(1,{error: "Need one or two languages"}).max(2, {error: "Too many languages"}),
     genders: z.literal(['Male', 'Female']),
-    skills: z.array(z.string()).max(2, {error: "Too many skiils. Chill dude..."})
+    skills: z.array(z.string()).max(2, {error: "Too many skiils. Chill dude..."}),
+    registrationDateAndTime: z.date(),
+    salary: z.array(z.number()).min(2).max(2),
+    isTeacher: z.boolean()
 });
 
 export type Schema = z.infer<typeof schema>
@@ -20,5 +23,8 @@ export const defaultValues: Schema = {
     states: [],
     languages: [],
     genders: 'Male',
-    skills: []
+    skills: [],
+    registrationDateAndTime: new Date(),
+    salary: [1, 30],
+    isTeacher: false
 }

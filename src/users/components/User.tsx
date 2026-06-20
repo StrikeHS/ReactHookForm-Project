@@ -6,6 +6,9 @@ import { RHFToggleButtonGroup } from '../../components/RHFToggleButtonGroup'
 import { RHFRadioButtonGroup } from '../../components/RHFRadioButtonGroup'
 import { useGetData } from '../hooks/useGetData'
 import { RHFCheckboxes } from '../../components/RHFCheckboxes'
+import { RHFDateTimePicker } from '../../components/RHFDateTimePicker'
+import { RHFRangeSlider } from '../../components/RHFRangeSlider'
+import { RHFSwitch } from '../../components/RHFSwitch'
 
 export function Users() {
     const buttonsData = useGetData()
@@ -14,34 +17,45 @@ export function Users() {
     return (
         <Stack sx={{gap: 2}}>
             <TextField {...register('name')}
-                label={'Name'}
+                label="Name"
                 error={!!errors.name} 
                 helperText={errors.name?.message}
             />
             <TextField {...register('email')}
-                label={'Email'}
+                label="Email"
                 error={!!errors.email}
                 helperText={errors.email?.message}
             />
             <RHFAutocomplete<Schema>
                 name="states"
-                label={"states"}
+                label="States"
                 buttonsData={buttonsData.statesQuery.data}
             />
             <RHFToggleButtonGroup<Schema> 
                 name="languages"
-                label={"languages"}
+                label="languages"
                 buttonsData={buttonsData.langQuery.data}
             />
             <RHFRadioButtonGroup<Schema>
                 name="genders"
-                label={"genders"}
+                label="Genders"
                 buttonsData={buttonsData.gendersQuery.data}
             />
             <RHFCheckboxes<Schema>
                 name="skills"
-                label={"skills"}
+                label="Skills"
                 buttonsData={buttonsData.skillsQuery.data}
+            />
+            <RHFDateTimePicker<Schema>
+                name="registrationDateAndTime"
+                label="Registration Date & Time"
+            />
+            <RHFRangeSlider<Schema>
+                name="salary"
+            />
+            <RHFSwitch<Schema>
+                name="isTeacher"
+                label="Are you a teacher?"
             />
         </Stack>
     )

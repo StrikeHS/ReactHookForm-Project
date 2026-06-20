@@ -1,5 +1,5 @@
 import { Controller, useFormContext, type FieldValues} from "react-hook-form";
-import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel } from "@mui/material";
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel } from "@mui/material";
 import type { RHFComponentCommonProps } from "../types/RHFComponentProps";
 
 export function RHFCheckboxes<T extends FieldValues>({name, label, buttonsData}: RHFComponentCommonProps<T>) {
@@ -9,8 +9,8 @@ export function RHFCheckboxes<T extends FieldValues>({name, label, buttonsData}:
         <Controller
             name={name}
             control={control}
-            render={({field: {value, onChange}, fieldState: {error}}) => (
-                <FormControl error={!!error}>
+            render={({field: {value, onChange, ...fields}, fieldState: {error}}) => (
+                <FormControl {...fields} error={!!error}>
                     <FormLabel component="legend">{label}</FormLabel>
                     <FormGroup>
                         {
@@ -35,6 +35,7 @@ export function RHFCheckboxes<T extends FieldValues>({name, label, buttonsData}:
                             )
                         }
                     </FormGroup>
+                    <FormHelperText>{error?.message}</FormHelperText>
                 </FormControl>
             )}
         >
