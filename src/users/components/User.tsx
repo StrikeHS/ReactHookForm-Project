@@ -60,7 +60,7 @@ export function Users() {
 
     const onSubmit:SubmitHandler<Schema> = (data) => {
         if (variant === 'create') {
-            console.log((createUserMutation.mutate(data, {onSuccess: (data) => setId(data.data?.id)})))
+            (createUserMutation.mutate(data, {onSuccess: (data) => setId(data.data?.id)}))
         } else {
             if(id) updateUserMutation.mutate({data, id})
         }
