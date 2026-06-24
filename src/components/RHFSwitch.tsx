@@ -11,7 +11,7 @@ export function RHFSwitch<T extends FieldValues>({name, label}: RHFComponentComm
             name={name}
             render={({field: {value, onChange, ...fields}}) => (
                 <FormControl {...fields}>
-                    <FormControlLabel control={<Switch value={value} onChange={(_, newValue) => onChange(newValue)}/>} label={label}/>
+                    <FormControlLabel control={<Switch checked={value} onChange={(_, newValue) => onChange(newValue)}/>} label={label}/>
                 </FormControl>
             )}
         />

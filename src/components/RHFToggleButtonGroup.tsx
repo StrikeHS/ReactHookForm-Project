@@ -19,7 +19,7 @@ export function RHFToggleButtonGroup<T extends FieldValues>({name, label, button
                         }}
                         ref={ref}
                     >
-                        {buttonsData?.map((button) => <ToggleButton key={button.id} value={button.label.toLowerCase()}>{button.label}</ToggleButton>)}
+                        {buttonsData?.map((button) => <ToggleButton key={button.id} value={button.id.toLowerCase()}>{button.label}</ToggleButton>)}
                     </ToggleButtonGroup>
                 </>
                 

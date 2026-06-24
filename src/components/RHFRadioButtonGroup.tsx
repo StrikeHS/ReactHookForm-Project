@@ -19,7 +19,7 @@ export function RHFRadioButtonGroup<T extends FieldValues>({name, label, buttons
                             onChange(newValue)
                         }}
                     >
-                        {buttonsData?.map((button) => <FormControlLabel key={button.id} value={button.label} control={<Radio/>} label={button.label}/>)}
+                        {buttonsData?.map((button) => <FormControlLabel key={button.id} value={button.id} control={<Radio/>} label={button.label}/>)}
                     </RadioGroup>
                 </FormControl>
             }
