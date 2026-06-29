@@ -1,14 +1,8 @@
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { Controller, useFormContext, type FieldValues, type Path } from "react-hook-form";
-import type { Language } from "../types/languages";
+import { Controller, useFormContext, type FieldValues } from "react-hook-form";
+import type { RHFComponentCommonProps } from "../types/RHFComponentProps";
 
-type RHFToggleButtonGroup<T extends FieldValues> = {
-    name: Path<T>;
-    label: string;
-    buttonsData?: Language[]
-}
-
-export function RHFToggleButtonGroup<T extends FieldValues>({name, label, buttonsData}: RHFToggleButtonGroup<T>) {
+export function RHFToggleButtonGroup<T extends FieldValues>({name, label, buttonsData}: RHFComponentCommonProps<T>) {
     const {control} = useFormContext();
 
     return(
@@ -20,13 +14,12 @@ export function RHFToggleButtonGroup<T extends FieldValues>({name, label, button
                     <ToggleButtonGroup
                         aria-label={label}
                         value={value}
-                        exclusive
                         onChange={(_, newValue) => {
-                            if(newValue) onChange(newValue)
+                            if(newValue.length) onChange(newValue)
                         }}
                         ref={ref}
                     >
-                        {buttonsData?.map((button) => <ToggleButton key={button.id} value={button.label.toLowerCase()}>{button.label}</ToggleButton>)}
+                        {buttonsData?.map((button) => <ToggleButton key={button.id} value={button.id.toLowerCase()}>{button.label}</ToggleButton>)}
                     </ToggleButtonGroup>
                 </>
                 
